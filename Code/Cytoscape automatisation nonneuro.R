@@ -4,7 +4,7 @@ gene.str <- paste(nonneuro.gene.list, collapse = ",")
 string.cmd <- paste("string protein query cutoff=0.90 limit=68 query",
                     gene.str, sep = "=")
 commandsRun(string.cmd)
-renameNetwork("nonneuro_network", network = "STRING network")
+renameNetwork("nonneuro_network", network = "STRING network - 1")
 
 #map the data to be an Ensembl ID
 mapTableColumn('display name', 'Human', 'HGNC', 'Ensembl')
@@ -35,3 +35,4 @@ my.Pathways <- selectNodes("pathway", by.col = "CTL.Type", preserve = FALSE)$nod
 clearSelection()
 setNodeColorBypass(my.Pathways, "#DD99FF")
 setNodeShapeBypass(my.Pathways, "hexagon")
+renameNetwork("extended_nonneuro_network", network = "CTL_nonneuro_network")
