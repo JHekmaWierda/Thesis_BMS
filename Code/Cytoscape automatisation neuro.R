@@ -66,3 +66,10 @@ commandsRun('cytargetlinker applyLayout network="current"')
 commandsRun(paste0('cytargetlinker extend idAttribute="Ensembl" linkSetFiles="', Wikipathwayssets2, '"'))
 commandsRun('cytargetlinker applyLayout network="current"')
 
+#Fix visualization
+my.Pathways <- selectNodes("pathway", by.col = "CTL.Type", preserve = FALSE)$nodes #easy way to collect node SUIDs by column value
+clearSelection()
+setNodeColorBypass(my.Pathways, "#DD99FF")
+setNodeShapeBypass(my.Pathways, "hexagon")
+renameNetwork("extended_neuro_network", network = "CTL_neuro_network")
+
