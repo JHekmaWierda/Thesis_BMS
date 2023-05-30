@@ -42,6 +42,10 @@ string.cmd <- paste("string protein query cutoff=0.90 limit=118 query",
 commandsRun(string.cmd)
 renameNetwork("neuro_network", network = "STRING network")
 
+#map the data to be an Ensembl ID
+mapTableColumn('display name', 'Human', 'HGNC', 'Ensembl')
+
+
 #Upload Expression data
 toggleGraphicsDetails()
 loadTableData(nonneuro_limma_and_neuro_limma, data.key.column = "hgnc_symbol_", table.key.column = "display name")
@@ -52,12 +56,13 @@ data.values <- c(-0.28,0,0.28)
 node.colors <- c(rev(brewer.pal(length(data.values), "RdBu")))
 setNodeColorMapping("logFC_neuro", data.values, node.colors, default.color = "#D8D8D8", style.name = "neuro_style")
 
-#
+# Create the Linksets
 Wikipathwayssets1 <- file.path(getwd(), "wikipathways-20220511-hsa-WP (1).xgmml")
 Wikipathwayssets2 <- file.path(getwd(), "wikipathways-20220511-hsa-REACTOME (1).xgmml")
-#
-commandsRun(paste0('cytargetlinker extend idAttribute="node ensembl-id" linkSetFiles="', Wikipathwayssets1, '"'))
+
+#Extend the pathway with cytargetlinker
+commandsRun(paste0('cytargetlinker extend idAttribute="Ensembl" linkSetFiles="', Wikipathwayssets1, '"'))
 commandsRun('cytargetlinker applyLayout network="current"')
-commandsRun(paste0('cytargetlinker extend idAttribute="node ensembl-id" linkSetFiles="', Wikipathwayssets2, '"'))
+commandsRun(paste0('cytargetlinker extend idAttribute="Ensembl" linkSetFiles="', Wikipathwayssets2, '"'))
 commandsRun('cytargetlinker applyLayout network="current"')
 
