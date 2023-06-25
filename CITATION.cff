@@ -1,0 +1,9 @@
+cff-version: 1.0.0.
+message: "If you use this software, please cite it as below."
+author:
+- family-names: "Hekma Wierda"
+  given-names: "Jolijn"
+title: "Thesis_BMS"
+version: 1.0.0
+date-released: 2023-07-07
+url: "https://github.com/JHekmaWierda/Thesis_BMS"
